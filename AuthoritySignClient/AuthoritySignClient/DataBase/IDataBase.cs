@@ -33,6 +33,10 @@ namespace AuthoritySignClient.DataBase
         public abstract void Commit();
         #endregion
 
+        #region Подключение
+        public virtual void OpenConnection(){}
+        #endregion
+
         #region Начало транзакции
         public abstract IDisposable BeginTransaction();
         #endregion

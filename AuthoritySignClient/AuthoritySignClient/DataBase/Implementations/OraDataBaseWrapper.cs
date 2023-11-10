@@ -77,6 +77,12 @@ namespace AuthoritySignClient.DataBase.Implementations
             _context.Entry(obj)?.Reload();
         }
 
+        public override void OpenConnection()
+        {
+            if (_context.Database.Connection.State != System.Data.ConnectionState.Open)
+                _context.Database.Connection.Open();
+        }
+
         public override IDisposable BeginTransaction()
         {
             _transaction = _context.Database.BeginTransaction();

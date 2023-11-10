@@ -19,6 +19,7 @@ namespace AuthoritySignClient
     /// </summary>
     public partial class AuthWindow : Window
     {
+        private Utils.Logger.UtilityLog _log = Utils.Logger.UtilityLog.GetInstance();
         public AuthWindow()
         {
             InitializeComponent();
@@ -28,13 +29,25 @@ namespace AuthoritySignClient
 
         private void EnterButton_Click(object sender, RoutedEventArgs e)
         {
-            new Utils.PasswordUtil().GenerateParametersForPassword();
-            new Utils.PasswordUtil().SetDataBasePassword(passwordBoxEdit.Text);
-            Utils.ConfigSet.Config.GetInstance().Save(Utils.ConfigSet.Config.GetInstance(), Utils.ConfigSet.Config.ConfFileName);
+            try
+            {
+                new Utils.PasswordUtil().GenerateParametersForPassword();
+                new Utils.PasswordUtil().SetDataBasePassword(passwordBoxEdit.Text);
 
-            var mainWindow = new MainWindow();
-            mainWindow.Show();
-            Close();
+                var dataBaseContext = new DataBase.DataBaseFactory().Create();
+                dataBaseContext.OpenConnection();
+
+                Utils.ConfigSet.Config.GetInstance().Save(Utils.ConfigSet.Config.GetInstance(), Utils.ConfigSet.Config.ConfFileName);
+
+                var mainWindow = new MainWindow();
+                mainWindow.Show();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                _log.Error(ex);
+                _log.Log("EnterButton: вход выполнен с ошибкой.");
+            }
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
