@@ -115,13 +115,17 @@
       <DependentUpon>AuthWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\AuthModel.cs" />
+    <Compile Include="Models\Base\ListViewModel.cs" />
     <Compile Include="Models\Base\ModelBase.cs" />
+    <Compile Include="Models\MainViewModel.cs" />
+    <Compile Include="Models\View\AuthoritySignDocumentsView.cs" />
     <Compile Include="Utils\ConfigSet\Config.cs" />
     <Compile Include="Utils\ConfigSet\Server.cs" />
     <Compile Include="Utils\ConfigSet\ServersConfig.cs" />
     <Compile Include="Utils\Configuration\Configuration.cs" />
     <Compile Include="Utils\Logger\UtilityLog.cs" />
     <Compile Include="Utils\PasswordUtil.cs" />
+    <Compile Include="Utils\RelayCommand.cs" />
     <Page Include="AuthWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

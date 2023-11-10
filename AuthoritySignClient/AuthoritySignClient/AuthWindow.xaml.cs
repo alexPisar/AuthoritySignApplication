@@ -40,6 +40,9 @@ namespace AuthoritySignClient
                 Utils.ConfigSet.Config.GetInstance().Save(Utils.ConfigSet.Config.GetInstance(), Utils.ConfigSet.Config.ConfFileName);
 
                 var mainWindow = new MainWindow();
+                var mainModel = new Models.MainViewModel(dataBaseContext);
+                mainWindow.DataContext = mainModel;
+
                 mainWindow.Show();
                 Close();
             }
