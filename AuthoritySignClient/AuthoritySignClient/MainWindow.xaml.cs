@@ -31,5 +31,10 @@ namespace AuthoritySignClient
             if(IsLoaded)
                 (DataContext as Models.Base.ListViewModel<Models.View.AuthoritySignDocumentsView>)?.Refresh();
         }
+
+        private void TableView_RowDoubleClick(object sender, DevExpress.Xpf.Grid.RowDoubleClickEventArgs e)
+        {
+            (DataContext as Models.Base.ListViewModel<Models.View.AuthoritySignDocumentsView>)?.Edit();
+        }
     }
 }

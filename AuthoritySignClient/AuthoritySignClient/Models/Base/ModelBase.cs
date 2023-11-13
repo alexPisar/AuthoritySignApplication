@@ -11,7 +11,7 @@ namespace AuthoritySignClient.Models.Base
 {
     public class ModelBase : INotifyPropertyChanged
     {
-        private Utils.Logger.UtilityLog _log = Utils.Logger.UtilityLog.GetInstance();
+        protected Utils.Logger.UtilityLog _log = Utils.Logger.UtilityLog.GetInstance();
 
         /// <summary>Событие для извещения об изменения свойства</summary>
 		public event PropertyChangedEventHandler PropertyChanged;

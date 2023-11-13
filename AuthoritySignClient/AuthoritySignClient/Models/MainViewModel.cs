@@ -14,6 +14,9 @@ namespace AuthoritySignClient.Models
         private DataBase.IDataBase _dataBaseContext;
 
         public override RelayCommand RefreshCommand => new RelayCommand(o => Refresh());
+        public override RelayCommand CreateNewCommand => new RelayCommand(o => CreateNew());
+        public override RelayCommand EditCommand => new RelayCommand(o => Edit());
+        public override RelayCommand DeleteCommand => new RelayCommand(o => Delete());
 
         public List<Utils.ConfigSet.Server> Servers => Utils.ConfigSet.ServersConfig.GetInstance()?.Servers;
         public Utils.ConfigSet.Server SelectedServer
@@ -53,6 +56,33 @@ namespace AuthoritySignClient.Models
             {
                 Error(ex);
                 Log("Refresh: произошла ошибка обновления.");
+            }
+        }
+
+        public override void Delete()
+        {
+            if(SelectedItem == null)
+            {
+                _log.UIShowError("Не выбран уполномоченный представитель.");
+                return;
+            }
+
+            if (DevExpress.Xpf.Core.DXMessageBox.Show(
+                    "Вы действительно хотите удалить уполномоченное лицо из списка?", "Удаление", 
+                    System.Windows.MessageBoxButton.YesNo, System.Windows.MessageBoxImage.Question) != System.Windows.MessageBoxResult.Yes)
+                return;
+
+            try
+            {
+                _dataBaseContext.Delete(SelectedItem.AuthoritySignDocuments);
+                _dataBaseContext.Commit();
+                Refresh();
+            }
+            catch(Exception ex)
+            {
+                _dataBaseContext.Rollback();
+                Error(ex);
+                Log("Delete: произошла ошибка удаления.");
             }
         }
     }

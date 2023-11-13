@@ -7,6 +7,8 @@
         xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
         xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
         xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
         xmlns:local="clr-namespace:AuthoritySignClient"
         mc:Ignorable="d"
         Title="Список уполномоченных лиц" Height="450" Width="800">
@@ -16,7 +18,8 @@
     </dxmvvm:Interaction.Behaviors>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <dxb:StatusBarControl Grid.Row="0" Caption="Главное меню" Height="70">
             <dxb:BarEditItem x:Name="serverBarEdit" Content="Сервер" EditWidth="150" EditValue="{Binding SelectedServer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -25,6 +28,50 @@
                     <dxe:ComboBoxEditSettings ItemsSource="{Binding Servers}" DisplayMember="SID" />
                 </dxb:BarEditItem.EditSettings>
             </dxb:BarEditItem>
+            <dxb:BarButtonItem Command="{Binding CreateNewCommand}">
+                <dxb:BarButtonItem.ContentTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <Image Source="{dx:DXImage SvgImages/Icon Builder/Actions_Add.svg}"/>
+                            <TextBlock Text="Добавить" HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </DataTemplate>
+                </dxb:BarButtonItem.ContentTemplate>
+            </dxb:BarButtonItem>
+            <dxb:BarButtonItem Command="{Binding DeleteCommand}">
+                <dxb:BarButtonItem.ContentTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <Image Source="{dx:DXImage SvgImages/Outlook Inspired/Delete.svg}" />
+                            <TextBlock Text="Удалить" HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </DataTemplate>
+                </dxb:BarButtonItem.ContentTemplate>
+            </dxb:BarButtonItem>
         </dxb:StatusBarControl>
+        <dxg:GridControl Grid.Row="1" ItemsSource="{Binding ItemsList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                         SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ShowBorder="False">
+            <dxg:GridControl.Bands>
+                <dxg:GridControlBand Header="Организация">
+                    <dxg:GridColumn FieldName="Customer.Name" Header="Наименование" Width="150"/>
+                    <dxg:GridColumn FieldName="Customer.Inn" Header="ИНН" Width="90"/>
+                    <dxg:GridColumn FieldName="Customer.Kpp" Header="КПП" Width="80"/>
+                    <dxg:GridColumn FieldName="Customer.Director" Header="Доверитель" Width="120"/>
+                    <dxg:GridColumn FieldName="Customer.Address" Header="Адрес" Width="150"/>
+                </dxg:GridControlBand>
+                <dxg:GridControlBand Header="Уполномоченное лицо">
+                    <dxg:GridColumn FieldName="AuthoritySignDocuments.Surname" Header="Фамилия" Width="100"/>
+                    <dxg:GridColumn FieldName="AuthoritySignDocuments.Name" Header="Имя" Width="100"/>
+                    <dxg:GridColumn FieldName="AuthoritySignDocuments.PatronymicSurname" Header="Отчество" Width="100"/>
+                    <dxg:GridColumn FieldName="AuthoritySignDocuments.Position" Header="Должность" Width="100"/>
+                    <dxg:GridColumn FieldName="AuthoritySignDocuments.Inn" Header="ИНН" Width="90"/>
+                </dxg:GridControlBand>
+            </dxg:GridControl.Bands>
+            <dxg:GridControl.View>
+                <dxg:TableView ShowSearchPanelMode="Always"
+                               AllowEditing="False" 
+                               RowDoubleClick="TableView_RowDoubleClick" />
+            </dxg:GridControl.View>
+        </dxg:GridControl>
     </Grid>
 </dxr:DXRibbonWindow>
