@@ -125,9 +125,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddUpdatePersonWindow.xaml.cs">
+      <DependentUpon>AddUpdatePersonWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AuthWindow.xaml.cs">
       <DependentUpon>AuthWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\AddUpdatePersonModel.cs" />
     <Compile Include="Models\AuthModel.cs" />
     <Compile Include="Models\Base\ListViewModel.cs" />
     <Compile Include="Models\Base\ModelBase.cs" />
@@ -140,6 +144,10 @@
     <Compile Include="Utils\Logger\UtilityLog.cs" />
     <Compile Include="Utils\PasswordUtil.cs" />
     <Compile Include="Utils\RelayCommand.cs" />
+    <Page Include="AddUpdatePersonWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AuthWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

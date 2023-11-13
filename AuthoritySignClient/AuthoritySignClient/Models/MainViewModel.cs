@@ -59,6 +59,84 @@ namespace AuthoritySignClient.Models
             }
         }
 
+        public override void CreateNew()
+        {
+            var createPersonModel = new AddUpdatePersonModel();
+
+            try
+            {
+                createPersonModel.Customers = _dataBaseContext.SelectAll<RefCustomer>();
+            }
+            catch (Exception ex)
+            {
+                Error(ex);
+                Log("CreateNew: ошибка запроса.");
+                return;
+            }
+
+            createPersonModel.AuthorizedPersons = ItemsList;
+            var createPersonWindow = new AddUpdatePersonWindow(createPersonModel);
+
+            if(createPersonWindow.ShowDialog() == true)
+            {
+                try
+                {
+                    _dataBaseContext.Add(createPersonModel.Item.AuthoritySignDocuments);
+                    _dataBaseContext.Commit();
+                }
+                catch(Exception ex)
+                {
+                    _dataBaseContext.Rollback();
+                    Error(ex);
+                    Log("CreateNew: произошла ошибка создания.");
+                }
+
+                Refresh();
+            }
+        }
+
+        public override void Edit()
+        {
+            if (SelectedItem == null)
+            {
+                _log.UIShowError("Не выбран уполномоченный представитель.");
+                return;
+            }
+
+            var updatePersonModel = new AddUpdatePersonModel(SelectedItem);
+
+            try
+            {
+                updatePersonModel.Customers = _dataBaseContext.SelectAll<RefCustomer>();
+            }
+            catch(Exception ex)
+            {
+                Error(ex);
+                Log("Edit: ошибка запроса списка организаций.");
+                return;
+            }
+
+            updatePersonModel.AuthorizedPersons = ItemsList;
+            var updatePersonWindow = new AddUpdatePersonWindow(updatePersonModel);
+
+            if(updatePersonWindow.ShowDialog() == true)
+            {
+                try
+                {
+                    _dataBaseContext.Commit();
+                }
+                catch(Exception ex)
+                {
+                    _dataBaseContext.Rollback();
+                    _dataBaseContext.RefreshObject(SelectedItem.AuthoritySignDocuments);
+                    Error(ex);
+                    Log("Edit: произошла ошибка изменения сущности.");
+                }
+
+                Refresh();
+            }
+        }
+
         public override void Delete()
         {
             if(SelectedItem == null)
@@ -76,7 +154,6 @@ namespace AuthoritySignClient.Models
             {
                 _dataBaseContext.Delete(SelectedItem.AuthoritySignDocuments);
                 _dataBaseContext.Commit();
-                Refresh();
             }
             catch(Exception ex)
             {
@@ -84,6 +161,8 @@ namespace AuthoritySignClient.Models
                 Error(ex);
                 Log("Delete: произошла ошибка удаления.");
             }
+
+            Refresh();
         }
     }
 }

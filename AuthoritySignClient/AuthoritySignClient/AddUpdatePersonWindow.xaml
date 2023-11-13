@@ -1,0 +1,35 @@
+﻿<Window x:Class="AuthoritySignClient.AddUpdatePersonWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AuthoritySignClient"
+        mc:Ignorable="d"
+        Title="{Binding TitleText}" Height="260" Width="800">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" Height="26" Margin="0 5 0 0">
+                <Label Content="Организация" FontWeight="Bold" Width="100"  Margin="10 0 0 0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="26" Margin="0 5 0 0">
+                <Label Content="Фамилия" FontWeight="Bold" Width="100"  Margin="10 0 0 0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="26" Margin="0 5 0 0">
+                <Label Content="Имя" FontWeight="Bold" Width="100"  Margin="10 0 0 0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="26" Margin="0 5 0 0">
+                <Label Content="Отчество" FontWeight="Bold" Width="100"  Margin="10 0 0 0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="26" Margin="0 5 0 0">
+                <Label Content="ИНН" FontWeight="Bold" Width="100"  Margin="10 0 0 0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="26" Margin="0 5 0 0">
+                <Label Content="Должность" FontWeight="Bold" Width="100"  Margin="10 0 0 0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="ChangeButton" Height="25" Margin="5 0" Width="80" Content="{Binding SaveButtonText}" Click="ChangeButton_Click" />
+                <Button x:Name="CancelButton" Height="25" Margin="5 0" Width="80" Content="Отмена" Click="CancelButton_Click" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
