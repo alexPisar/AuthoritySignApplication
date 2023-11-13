@@ -15,24 +15,45 @@ namespace AuthoritySignClient.Models
 
         public override RelayCommand RefreshCommand => new RelayCommand(o => Refresh());
 
-        public MainViewModel(DataBase.IDataBase dataBaseContext)
+        public List<Utils.ConfigSet.Server> Servers => Utils.ConfigSet.ServersConfig.GetInstance()?.Servers;
+        public Utils.ConfigSet.Server SelectedServer
         {
-            _dataBaseContext = dataBaseContext;
-            Refresh();
+            get {
+                return Utils.ConfigSet.ServersConfig.GetInstance().SelectedServer;
+            }
+
+            set {
+                Utils.ConfigSet.ServersConfig.GetInstance().SelectedServer = value;
+                OnPropertyChanged("SelectedServer");
+            }
         }
 
         public override void Refresh()
         {
-            var items = from a in _dataBaseContext.SelectAll<RefAuthoritySignDocuments>()
-                        join customer in _dataBaseContext.SelectAll<RefCustomer>()
-                        on a.IdCustomer equals customer.Id
-                        select new View.AuthoritySignDocumentsView
-                        {
-                            Customer = customer,
-                            AuthoritySignDocuments = a
-                        };
+            try
+            {
+                _dataBaseContext = new DataBase.DataBaseFactory().Create();
 
-            ItemsList = new ObservableCollection<View.AuthoritySignDocumentsView>(items);
+                var items = from a in _dataBaseContext.SelectAll<RefAuthoritySignDocuments>()
+                            join customer in _dataBaseContext.SelectAll<RefCustomer>()
+                            on a.IdCustomer equals customer.Id
+                            select new View.AuthoritySignDocumentsView
+                            {
+                                Customer = customer,
+                                AuthoritySignDocuments = a
+                            };
+
+                ItemsList = new ObservableCollection<View.AuthoritySignDocumentsView>(items);
+                SelectedItem = null;
+
+                OnPropertyChanged("SelectedItem");
+                OnPropertyChanged("ItemsList");
+            }
+            catch(Exception ex)
+            {
+                Error(ex);
+                Log("Refresh: произошла ошибка обновления.");
+            }
         }
     }
 }

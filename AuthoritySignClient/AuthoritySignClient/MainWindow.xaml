@@ -1,12 +1,30 @@
-﻿<Window x:Class="AuthoritySignClient.MainWindow"
+﻿<dxr:DXRibbonWindow x:Class="AuthoritySignClient.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
+        xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+        xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
         xmlns:local="clr-namespace:AuthoritySignClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Список уполномоченных лиц" Height="450" Width="800">
+    <dxmvvm:Interaction.Behaviors>
+        <dxmvvm:EventToCommand EventName="Loaded" Command="{Binding RefreshCommand}">
+        </dxmvvm:EventToCommand>
+    </dxmvvm:Interaction.Behaviors>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <dxb:StatusBarControl Grid.Row="0" Caption="Главное меню" Height="70">
+            <dxb:BarEditItem x:Name="serverBarEdit" Content="Сервер" EditWidth="150" EditValue="{Binding SelectedServer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             EditValueChanged="serverBarEditItem_EditValueChanged">
+                <dxb:BarEditItem.EditSettings>
+                    <dxe:ComboBoxEditSettings ItemsSource="{Binding Servers}" DisplayMember="SID" />
+                </dxb:BarEditItem.EditSettings>
+            </dxb:BarEditItem>
+        </dxb:StatusBarControl>
     </Grid>
-</Window>
+</dxr:DXRibbonWindow>

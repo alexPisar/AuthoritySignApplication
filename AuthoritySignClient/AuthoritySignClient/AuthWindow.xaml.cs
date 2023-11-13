@@ -19,7 +19,6 @@ namespace AuthoritySignClient
     /// </summary>
     public partial class AuthWindow : Window
     {
-        private Utils.Logger.UtilityLog _log = Utils.Logger.UtilityLog.GetInstance();
         public AuthWindow()
         {
             InitializeComponent();
@@ -40,7 +39,7 @@ namespace AuthoritySignClient
                 Utils.ConfigSet.Config.GetInstance().Save(Utils.ConfigSet.Config.GetInstance(), Utils.ConfigSet.Config.ConfFileName);
 
                 var mainWindow = new MainWindow();
-                var mainModel = new Models.MainViewModel(dataBaseContext);
+                var mainModel = new Models.MainViewModel();
                 mainWindow.DataContext = mainModel;
 
                 mainWindow.Show();
@@ -48,8 +47,8 @@ namespace AuthoritySignClient
             }
             catch (Exception ex)
             {
-                _log.Error(ex);
-                _log.Log("EnterButton: вход выполнен с ошибкой.");
+                (DataContext as Models.Base.ModelBase)?.Error(ex);
+                (DataContext as Models.Base.ModelBase)?.Log("EnterButton: вход выполнен с ошибкой.");
             }
         }
 

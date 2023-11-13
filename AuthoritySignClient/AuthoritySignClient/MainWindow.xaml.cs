@@ -12,17 +12,24 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DevExpress.Xpf.Ribbon;
 
 namespace AuthoritySignClient
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : DXRibbonWindow
     {
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void serverBarEditItem_EditValueChanged(object sender, RoutedEventArgs e)
+        {
+            if(IsLoaded)
+                (DataContext as Models.Base.ListViewModel<Models.View.AuthoritySignDocumentsView>)?.Refresh();
         }
     }
 }

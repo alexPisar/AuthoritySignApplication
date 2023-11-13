@@ -9,8 +9,10 @@ using System.Reflection;
 
 namespace AuthoritySignClient.Models.Base
 {
-    public class ModelBase
+    public class ModelBase : INotifyPropertyChanged
     {
+        private Utils.Logger.UtilityLog _log = Utils.Logger.UtilityLog.GetInstance();
+
         /// <summary>Событие для извещения об изменения свойства</summary>
 		public event PropertyChangedEventHandler PropertyChanged;
 
@@ -42,5 +44,30 @@ namespace AuthoritySignClient.Models.Base
 
         /// <summary>Метод для вызова события извещения об изменении всех свойств</summary>
         public void OnAllPropertyChanged() => OnPropertyChanged(GetType().GetProperties());
+
+        public void Log(string message, bool showMessage = false)
+        {
+            _log.Log(message, showMessage);
+        }
+
+        public void Log(Exception ex, string message, bool showMessage = false)
+        {
+            _log.Log(ex, message, showMessage);
+        }
+
+        public void Log(Exception ex, bool showMessage = false)
+        {
+            _log.Log(ex, showMessage);
+        }
+
+        public void Error(string errorText)
+        {
+            _log.Error(errorText);
+        }
+
+        public void Error(Exception ex)
+        {
+            _log.Error(ex);
+        }
     }
 }
