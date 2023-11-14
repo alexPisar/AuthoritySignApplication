@@ -24,6 +24,9 @@ namespace AuthoritySignClient.DataBase.DataBaseObjects
         [Column(@"INN"), MaxLength(15)]
         public virtual string Inn { get; set; }
 
+        [Column(@"DATABASE_USER_NAME"), MaxLength(40)]
+        public virtual string DataBaseUserName { get; set; }
+
         #endregion
     }
 }

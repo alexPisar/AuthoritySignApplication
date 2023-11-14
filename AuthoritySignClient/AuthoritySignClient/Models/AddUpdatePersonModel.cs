@@ -18,6 +18,9 @@ namespace AuthoritySignClient.Models
                 {
                     Customer = null,
                     AuthoritySignDocuments = new DataBase.DataBaseObjects.RefAuthoritySignDocuments()
+                    {
+                        DataBaseUserName = Utils.ConfigSet.Config.GetInstance().DataBaseUser
+                    }
                 };
 
                 _isCreate = true;
