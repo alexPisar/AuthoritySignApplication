@@ -19,6 +19,11 @@ namespace AuthoritySignClient.DataBase.Implementations
 
         public override IEnumerable<T> SelectAll<T>()
         {
+            if (typeof(T) == typeof(DataBaseObjects.RefCustomer))
+                return _context.RefCustomers as IEnumerable<T>;
+            else if (typeof(T) == typeof(DataBaseObjects.RefAuthoritySignDocuments))
+                return _context.RefAuthoritySignDocuments as IEnumerable<T>;
+
             return _context.Set<T>();
         }
 
@@ -33,7 +38,7 @@ namespace AuthoritySignClient.DataBase.Implementations
             if (_transaction == null)
                 BeginTransaction();
 
-            _context.Set<T>().AddRange(objects);
+            (SelectAll<T>() as DbSet<T>).AddRange(objects);
         }
 
         public override void Add<T>(T obj)
@@ -44,7 +49,7 @@ namespace AuthoritySignClient.DataBase.Implementations
             if (_transaction == null)
                 BeginTransaction();
 
-            _context.Set<T>().Add(obj);
+            (SelectAll<T>() as DbSet<T>).Add(obj);
         }
 
         public override void Delete<T>(IEnumerable<T> objects)
@@ -58,7 +63,7 @@ namespace AuthoritySignClient.DataBase.Implementations
             if (_transaction == null)
                 BeginTransaction();
 
-            _context.Set<T>().RemoveRange(objects);
+            (SelectAll<T>() as DbSet<T>).RemoveRange(objects);
         }
 
         public override void Delete<T>(T obj)
@@ -69,7 +74,7 @@ namespace AuthoritySignClient.DataBase.Implementations
             if (_transaction == null)
                 BeginTransaction();
 
-            _context.Set<T>().Remove(obj);
+            (SelectAll<T>() as DbSet<T>).Remove(obj);
         }
 
         public override void RefreshObject<T>(T obj)

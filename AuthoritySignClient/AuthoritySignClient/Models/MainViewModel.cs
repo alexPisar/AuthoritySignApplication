@@ -36,6 +36,7 @@ namespace AuthoritySignClient.Models
             try
             {
                 _dataBaseContext = new DataBase.DataBaseFactory().Create();
+                _dataBaseContext.LoadContext();
 
                 var items = from a in _dataBaseContext.SelectAll<RefAuthoritySignDocuments>()
                             join customer in _dataBaseContext.SelectAll<RefCustomer>()
@@ -65,7 +66,7 @@ namespace AuthoritySignClient.Models
 
             try
             {
-                createPersonModel.Customers = _dataBaseContext.SelectAll<RefCustomer>();
+                createPersonModel.Customers = _dataBaseContext.SelectAll<RefCustomer>().ToList();
             }
             catch (Exception ex)
             {
@@ -107,7 +108,7 @@ namespace AuthoritySignClient.Models
 
             try
             {
-                updatePersonModel.Customers = _dataBaseContext.SelectAll<RefCustomer>();
+                updatePersonModel.Customers = _dataBaseContext.SelectAll<RefCustomer>().ToList();
             }
             catch(Exception ex)
             {

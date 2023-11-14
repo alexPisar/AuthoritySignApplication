@@ -117,6 +117,10 @@ namespace AuthoritySignClient.Models
 
             set {
                 Item.Customer = value;
+
+                if(value != null)
+                    Item.AuthoritySignDocuments.IdCustomer = value.Id;
+
                 OnPropertyChanged("Customer");
             }
         }

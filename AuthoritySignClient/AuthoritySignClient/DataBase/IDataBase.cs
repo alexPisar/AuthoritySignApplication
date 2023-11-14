@@ -14,6 +14,8 @@ namespace AuthoritySignClient.DataBase
         }
         public abstract IEnumerable<T> SelectAll<T>() where T : IDataBaseObject;
 
+        public virtual void LoadContext() { }
+
         #region Добавление
         public abstract void Add<T>(IEnumerable<T> objects) where T : IDataBaseObject;
         public abstract void Add<T>(T obj) where T : IDataBaseObject;

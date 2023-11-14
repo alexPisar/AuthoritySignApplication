@@ -3,13 +3,43 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
         xmlns:local="clr-namespace:AuthoritySignClient"
         mc:Ignorable="d"
-        Title="{Binding TitleText}" Height="260" Width="800">
+        Title="{Binding TitleText}" Height="260" Width="550">
     <Grid>
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal" Height="26" Margin="0 5 0 0">
                 <Label Content="Организация" FontWeight="Bold" Width="100"  Margin="10 0 0 0"/>
+                <dxg:LookUpEdit IsEnabled="{Binding IsCreate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                Margin="10 0 0 5" Width="400" PopupWidth="800" PopupHeight="600"
+                                ItemsSource="{Binding Customers}" SelectedItem="{Binding SelectedCustomer, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                DisplayMember="Name" AutoPopulateColumns="False">
+                    <dxg:LookUpEdit.PopupContentTemplate>
+                        <ControlTemplate TargetType="{x:Type ContentControl}">
+                            <dxg:GridControl x:Name="PART_GridControl" ShowBorder="False" >
+                                <dxg:GridControl.Columns>
+                                    <dxg:GridColumn FieldName="Name" Header="Наименование" Width="150"/>
+                                    <dxg:GridColumn FieldName="Inn" Header="ИНН" Width="90"/>
+                                    <dxg:GridColumn FieldName="Kpp" Header="КПП" Width="80"/>
+                                    <dxg:GridColumn FieldName="Director" Header="Доверитель" Width="120"/>
+                                    <dxg:GridColumn FieldName="Address" Header="Адрес" Width="*"/>
+                                </dxg:GridControl.Columns>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView AllowPerPixelScrolling="True" 
+                                                   ShowSearchPanelMode="Always"
+                                                   AllowEditing="False" 
+                                                   NavigationStyle="Row" 
+                                                   ShowGroupPanel="False" 
+                                                   ShowAutoFilterRow="True" />
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </ControlTemplate>
+                    </dxg:LookUpEdit.PopupContentTemplate>
+                    <dxg:LookUpEdit.StyleSettings>
+                        <dxg:SearchLookUpEditStyleSettings/>
+                    </dxg:LookUpEdit.StyleSettings>
+                </dxg:LookUpEdit>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Height="26" Margin="0 5 0 0">
                 <Label Content="Фамилия" FontWeight="Bold" Width="100"  Margin="10 0 0 0"/>
