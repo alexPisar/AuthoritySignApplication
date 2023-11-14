@@ -41,25 +41,25 @@ namespace AuthoritySignClient
                 return;
             }
 
-            if (model.Surname == null)
+            if (string.IsNullOrEmpty(model.Surname))
             {
                 model.Error("Не указана фамилия");
                 return;
             }
 
-            if (model.Name == null)
+            if (string.IsNullOrEmpty(model.Name))
             {
                 model.Error("Не указано имя");
                 return;
             }
 
-            if (model.Position == null)
+            if (string.IsNullOrEmpty(model.Position))
             {
                 model.Error("Не указана должность");
                 return;
             }
 
-            if (model.Inn == null)
+            if (string.IsNullOrEmpty(model.Inn))
             {
                 model.Error("Не указан ИНН подписанта");
                 return;
