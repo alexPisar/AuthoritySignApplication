@@ -30,7 +30,7 @@
             </StackPanel>
         </GroupBox>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="EnterButton" Margin="5 10" Width="75" Content="Вход" Click="EnterButton_Click" />
+            <Button x:Name="EnterButton" IsDefault="True" Margin="5 10" Width="75" Content="Вход" Click="EnterButton_Click" />
             <Button x:Name="CancelButton" Margin="5 10" Width="75" Content="Отмена" Click="CancelButton_Click" />
         </StackPanel>
     </Grid>

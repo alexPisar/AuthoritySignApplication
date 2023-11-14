@@ -112,6 +112,17 @@ namespace AuthoritySignClient.Models
             }
         }
 
+        public string Comment
+        {
+            get {
+                return Item?.AuthoritySignDocuments?.Comment;
+            }
+            set {
+                Item.AuthoritySignDocuments.Comment = value;
+                OnPropertyChanged("Comment");
+            }
+        }
+
         public DataBase.DataBaseObjects.RefCustomer SelectedCustomer
         {
             get {

@@ -65,6 +65,7 @@
                     <dxg:GridColumn FieldName="AuthoritySignDocuments.PatronymicSurname" Header="Отчество" Width="100"/>
                     <dxg:GridColumn FieldName="AuthoritySignDocuments.Position" Header="Должность" Width="100"/>
                     <dxg:GridColumn FieldName="AuthoritySignDocuments.Inn" Header="ИНН" Width="90"/>
+                    <dxg:GridColumn FieldName="AuthoritySignDocuments.Comment" Header="Комментарий" Width="150" />
                 </dxg:GridControlBand>
             </dxg:GridControl.Bands>
             <dxg:GridControl.View>

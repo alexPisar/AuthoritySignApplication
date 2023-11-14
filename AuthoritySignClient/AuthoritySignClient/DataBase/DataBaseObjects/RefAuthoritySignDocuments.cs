@@ -27,6 +27,9 @@ namespace AuthoritySignClient.DataBase.DataBaseObjects
         [Column(@"DATABASE_USER_NAME"), MaxLength(40)]
         public virtual string DataBaseUserName { get; set; }
 
+        [Column(@"COMENT"), MaxLength(200)]
+        public virtual string Comment { get; set; }
+
         #endregion
     }
 }
