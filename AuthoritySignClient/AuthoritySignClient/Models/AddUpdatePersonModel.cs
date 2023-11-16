@@ -123,6 +123,42 @@ namespace AuthoritySignClient.Models
             }
         }
 
+        public string EmchdId
+        {
+            get {
+                return Item?.AuthoritySignDocuments?.EmchdId;
+            }
+
+            set {
+                Item.AuthoritySignDocuments.EmchdId = value;
+                OnPropertyChanged("EmchdId");
+            }
+        }
+
+        public DateTime? EmchdBeginDate
+        {
+            get {
+                return Item?.AuthoritySignDocuments?.EmchdBeginDate;
+            }
+
+            set {
+                Item.AuthoritySignDocuments.EmchdBeginDate = value;
+                OnPropertyChanged("EmchdBeginDate");
+            }
+        }
+
+        public DateTime? EmchdEndDate
+        {
+            get {
+                return Item?.AuthoritySignDocuments?.EmchdEndDate;
+            }
+
+            set {
+                Item.AuthoritySignDocuments.EmchdEndDate = value;
+                OnPropertyChanged("EmchdEndDate");
+            }
+        }
+
         public DataBase.DataBaseObjects.RefCustomer SelectedCustomer
         {
             get {

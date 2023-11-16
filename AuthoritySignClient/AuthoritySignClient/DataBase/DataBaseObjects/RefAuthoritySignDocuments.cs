@@ -30,6 +30,15 @@ namespace AuthoritySignClient.DataBase.DataBaseObjects
         [Column(@"COMENT"), MaxLength(200)]
         public virtual string Comment { get; set; }
 
+        [Column(@"EMCHD_ID"), MaxLength(50)]
+        public virtual string EmchdId { get; set; }
+
+        [Column(@"EMCHD_BEGIN_DATE")]
+        public virtual global::System.DateTime? EmchdBeginDate { get; set; }
+
+        [Column(@"EMCHD_END_DATE")]
+        public virtual global::System.DateTime? EmchdEndDate { get; set; }
+
         #endregion
     }
 }

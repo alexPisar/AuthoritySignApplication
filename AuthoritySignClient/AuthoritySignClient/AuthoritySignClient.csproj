@@ -152,6 +152,7 @@
     <Compile Include="Models\Base\ModelBase.cs" />
     <Compile Include="Models\MainViewModel.cs" />
     <Compile Include="Models\View\AuthoritySignDocumentsView.cs" />
+    <Compile Include="Report\XsdClasses\ON_EMCHD_1_928_00_01_01_01.cs" />
     <Compile Include="Utils\ConfigSet\Config.cs" />
     <Compile Include="Utils\ConfigSet\Server.cs" />
     <Compile Include="Utils\ConfigSet\ServersConfig.cs" />
@@ -159,6 +160,7 @@
     <Compile Include="Utils\Logger\UtilityLog.cs" />
     <Compile Include="Utils\PasswordUtil.cs" />
     <Compile Include="Utils\RelayCommand.cs" />
+    <Compile Include="Utils\Xml.cs" />
     <Page Include="AddUpdatePersonWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

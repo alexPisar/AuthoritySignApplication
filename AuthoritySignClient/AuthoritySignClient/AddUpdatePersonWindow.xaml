@@ -7,7 +7,7 @@
         xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
         xmlns:local="clr-namespace:AuthoritySignClient"
         mc:Ignorable="d"
-        Title="{Binding TitleText}" Height="290" Width="550">
+        Title="{Binding TitleText}" Height="455" Width="550">
     <Grid>
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal" Height="26" Margin="0 5 0 0">
@@ -43,6 +43,27 @@
                 </dxg:LookUpEdit>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Height="26" Margin="0 5 0 0">
+                <Label Content="Доверенность" FontWeight="Bold" Width="100"  Margin="10 0 0 0"/>
+                <dxe:TextEdit x:Name="emchdLoadTetxEdit" Width="360" Margin="10 0 0 5" IsEnabled="False" />
+                <Button x:Name="EmchdLoadButton" Click="EmchdLoadButton_Click" Content="..." Width="35" Margin="5 0 0 5" />
+            </StackPanel>
+            <GroupBox Header="Доверенность"  Height="135" Margin="5 0">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" Height="26" Margin="0 5 0 0">
+                        <Label Content="Идентификатор" FontWeight="Bold" Width="100"  Margin="10 0 0 0"/>
+                        <dxe:TextEdit IsEnabled="False" Text="{Binding EmchdId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="300"  Margin="10 0 0 5" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Height="26" Margin="0 5 0 0">
+                        <Label Content="Дата начала" FontWeight="Bold" Width="100"  Margin="10 0 0 0"/>
+                        <dxe:DateEdit IsEnabled="False" EditValue="{Binding EmchdBeginDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="300"  Margin="10 0 0 5" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Height="26" Margin="0 5 0 0">
+                        <Label Content="Окончание" FontWeight="Bold" Width="100"  Margin="10 0 0 0"/>
+                        <dxe:DateEdit IsEnabled="False" EditValue="{Binding EmchdEndDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="300"  Margin="10 0 0 5" />
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <StackPanel Orientation="Horizontal" Height="26" Margin="0 5 0 0">
                 <Label Content="Фамилия" FontWeight="Bold" Width="100"  Margin="10 0 0 0"/>
                 <dxe:TextEdit Width="400" Text="{Binding Surname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10 0 0 5" />
             </StackPanel>
@@ -67,8 +88,8 @@
                 <dxe:TextEdit Width="400" Text="{Binding Comment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10 0 0 5" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button x:Name="ChangeButton" Height="25" Margin="5 0" Width="80" Content="{Binding SaveButtonText}" Click="ChangeButton_Click" />
-                <Button x:Name="CancelButton" Height="25" Margin="5 0" Width="80" Content="Отмена" Click="CancelButton_Click" />
+                <Button x:Name="ChangeButton" Height="25" Margin="5 0" Width="90" Content="{Binding SaveButtonText}" Click="ChangeButton_Click" />
+                <Button x:Name="CancelButton" Height="25" Margin="5 0" Width="90" Content="Отмена" Click="CancelButton_Click" />
             </StackPanel>
         </StackPanel>
     </Grid>
