@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
         xmlns:local="clr-namespace:AuthoritySignClient"
         mc:Ignorable="d" DataContextChanged="Window_DataContextChanged"
         Title="Выбор сертификата для подписи" Height="450" Width="800">
@@ -15,7 +16,17 @@
         <dxg:GridControl ItemsSource="{Binding ItemsList}"
                          SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0">
             <dxg:GridColumn FieldName="Thumbprint" Header="Отпечаток" Width="150" />
-            <dxg:GridColumn FieldName="Subject" Header="Субъект" Width="*" />
+            <dxg:GridColumn FieldName="Subject" Header="Субъект" Width="*">
+                <dxg:GridColumn.EditSettings>
+                    <dxe:TextEditSettings TextWrapping="Wrap" />
+                </dxg:GridColumn.EditSettings>
+            </dxg:GridColumn>
+            <dxg:GridControl.View>
+                <dxg:TableView ShowSearchPanelMode="Always"
+                               AllowEditing="False"
+                               NavigationStyle="Row"
+                               ShowGroupPanel="False" />
+            </dxg:GridControl.View>
         </dxg:GridControl>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="1">
             <Button x:Name="signButton" Content="Подписать" Margin="5" Width="90" Click="SignButton_Click" />
