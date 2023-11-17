@@ -17,6 +17,7 @@ namespace AuthoritySignClient.Models
         public override RelayCommand CreateNewCommand => new RelayCommand(o => CreateNew());
         public override RelayCommand EditCommand => new RelayCommand(o => Edit());
         public override RelayCommand DeleteCommand => new RelayCommand(o => Delete());
+        public RelayCommand SignCommand => new RelayCommand(o => Sign());
 
         public List<Utils.ConfigSet.Server> Servers => Utils.ConfigSet.ServersConfig.GetInstance()?.Servers;
         public Utils.ConfigSet.Server SelectedServer
@@ -29,6 +30,13 @@ namespace AuthoritySignClient.Models
                 Utils.ConfigSet.ServersConfig.GetInstance().SelectedServer = value;
                 OnPropertyChanged("SelectedServer");
             }
+        }
+
+        private void Sign()
+        {
+            var inns = ItemsList.Select(i => i?.Customer?.Inn).Distinct();
+            var certChangeWindow = new CertChangeWindow(inns);
+            certChangeWindow.ShowDialog();
         }
 
         public override void Refresh()

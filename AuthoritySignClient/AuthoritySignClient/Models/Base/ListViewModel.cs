@@ -3,7 +3,7 @@ using AuthoritySignClient.Utils;
 
 namespace AuthoritySignClient.Models.Base
 {
-    public abstract class ListViewModel<T> : ModelBase
+    public class ListViewModel<T> : ModelBase
     {
         public ObservableCollection<T> ItemsList { get; set; }
         public T SelectedItem { get; set; }
