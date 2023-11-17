@@ -111,6 +111,9 @@ namespace AuthoritySignClient
                     if (string.IsNullOrEmpty(powerOfAttorney?.СвДов?.НомДовер))
                         throw new Exception("Не указан номер доверенности.");
 
+                    if (powerOfAttorney.СвДов?.СрокДейст != null && powerOfAttorney.СвДов.СрокДейст < DateTime.Now)
+                        throw new Exception("Срок действия доверенности истёк.");
+
                     var principal = powerOfAttorney?.СвДоверит?.FirstOrDefault();
 
                     if (principal == null)
@@ -135,14 +138,14 @@ namespace AuthoritySignClient
                         authorisedRepresentative.Пред.СведФизЛ.СведФЛ.ФИО.Фамилия.Substring(1).ToLower();
 
                     if (string.IsNullOrEmpty(authorisedRepresentative?.Пред?.СведФизЛ?.СведФЛ?.ФИО?.Имя))
-                        throw new Exception("Не указана имя физ. лица.");
+                        throw new Exception("Не указано имя физ. лица.");
 
                     var lowStrName =
                         authorisedRepresentative.Пред.СведФизЛ.СведФЛ.ФИО.Имя.Length == 1 ? string.Empty :
                         authorisedRepresentative.Пред.СведФизЛ.СведФЛ.ФИО.Имя.Substring(1).ToLower();
 
                     if (string.IsNullOrEmpty(authorisedRepresentative?.Пред?.СведФизЛ?.СведФЛ?.ФИО?.Отчество))
-                        throw new Exception("Не указана отчество физ. лица.");
+                        throw new Exception("Не указано отчество физ. лица.");
 
                     var lowStrPatronymicSurname =
                         authorisedRepresentative.Пред.СведФизЛ.СведФЛ.ФИО.Отчество.Length == 1 ? string.Empty :

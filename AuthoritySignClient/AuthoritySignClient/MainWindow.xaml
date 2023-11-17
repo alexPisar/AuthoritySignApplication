@@ -59,6 +59,11 @@
                     <dxg:GridColumn FieldName="Customer.Director" Header="Доверитель" Width="120"/>
                     <dxg:GridColumn FieldName="Customer.Address" Header="Адрес" Width="150"/>
                 </dxg:GridControlBand>
+                <dxg:GridControlBand Header="Доверенность">
+                    <dxg:GridColumn FieldName="AuthoritySignDocuments.EmchdId" Header="Идентификатор в ФНС" Width="150"/>
+                    <dxg:GridColumn FieldName="AuthoritySignDocuments.EmchdBeginDate" Header="Дата начала" Width="120"/>
+                    <dxg:GridColumn FieldName="AuthoritySignDocuments.EmchdEndDate" Header="Дата окончания" Width="120"/>
+                </dxg:GridControlBand>
                 <dxg:GridControlBand Header="Уполномоченное лицо">
                     <dxg:GridColumn FieldName="AuthoritySignDocuments.Surname" Header="Фамилия" Width="100"/>
                     <dxg:GridColumn FieldName="AuthoritySignDocuments.Name" Header="Имя" Width="100"/>
