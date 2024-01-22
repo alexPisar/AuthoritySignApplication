@@ -5,6 +5,11 @@ namespace AuthoritySignClient.DataBase.DataBaseObjects
 {
     public partial class RefAuthoritySignDocuments : IDataBaseObject
     {
+        public RefAuthoritySignDocuments()
+        {
+            this.IsMainDefault = 0;
+        }
+
         #region Properties
         [Key]
         public virtual decimal IdCustomer { get; set; }
@@ -21,7 +26,7 @@ namespace AuthoritySignClient.DataBase.DataBaseObjects
         [Column(@"POSITION"), MaxLength(128)]
         public virtual string Position { get; set; }
 
-        [Column(@"INN"), MaxLength(15)]
+        [Key, Column(@"INN"), MaxLength(15)]
         public virtual string Inn { get; set; }
 
         [Column(@"DATABASE_USER_NAME"), MaxLength(40)]
@@ -38,6 +43,9 @@ namespace AuthoritySignClient.DataBase.DataBaseObjects
 
         [Column(@"EMCHD_END_DATE")]
         public virtual global::System.DateTime? EmchdEndDate { get; set; }
+
+        [Column(@"IS_MAIN_DEFAULT")]
+        public virtual short IsMainDefault { get; set; }
 
         #endregion
     }

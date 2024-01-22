@@ -35,9 +35,10 @@ namespace AuthoritySignClient
                 return;
             }
 
-            if (model.IsCreate && model.AuthorizedPersons.Any(a => a.Customer.Id == model.SelectedCustomer.Id))
+            if (model.IsCreate && model.AuthorizedPersons.Any(a => a.Customer.Id == model.SelectedCustomer.Id && 
+            a.AuthoritySignDocuments.Inn == model.Inn))
             {
-                model.Error("Для данной организации уже были добавлены данные подписанта");
+                model.Error("Ранее уже был добавлен доверитель с указанным ИНН по данной организации");
                 return;
             }
 

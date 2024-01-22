@@ -175,6 +175,24 @@ namespace AuthoritySignClient.Models
             }
         }
 
+        public bool IsMainDefault
+        {
+            get {
+                if (Item?.AuthoritySignDocuments != null)
+                    return Item.AuthoritySignDocuments.IsMainDefault != 0;
+
+                return false;
+            }
+            set {
+                if (value)
+                    Item.AuthoritySignDocuments.IsMainDefault = 1;
+                else
+                    Item.AuthoritySignDocuments.IsMainDefault = 0;
+
+                OnPropertyChanged("IsMainDefault");
+            }
+        }
+
         public IEnumerable<DataBase.DataBaseObjects.RefCustomer> Customers { get; set; }
         public IEnumerable<View.AuthoritySignDocumentsView> AuthorizedPersons { get; set; }
     }

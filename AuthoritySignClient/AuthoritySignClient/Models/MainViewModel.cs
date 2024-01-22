@@ -90,6 +90,16 @@ namespace AuthoritySignClient.Models
             {
                 try
                 {
+                    if (createPersonModel.IsMainDefault)
+                    {
+                        var idCustomer = createPersonModel.SelectedCustomer.Id;
+                        var currentInn = createPersonModel.Inn;
+                        var updatedItems = ItemsList.Where(i => i.Customer.Id == idCustomer && i.AuthoritySignDocuments.Inn != currentInn);
+
+                        foreach (var item in updatedItems)
+                            item.AuthoritySignDocuments.IsMainDefault = 0;
+                    }
+
                     _dataBaseContext.Add(createPersonModel.Item.AuthoritySignDocuments);
                     _dataBaseContext.Commit();
                 }
@@ -132,6 +142,16 @@ namespace AuthoritySignClient.Models
             {
                 try
                 {
+                    if (updatePersonModel.IsMainDefault)
+                    {
+                        var idCustomer = updatePersonModel.Item.AuthoritySignDocuments.IdCustomer;
+                        var currentInn = updatePersonModel.Inn;
+                        var updatedItems = ItemsList.Where(i => i.Customer.Id == idCustomer && i.AuthoritySignDocuments.Inn != currentInn);
+
+                        foreach (var item in updatedItems)
+                            item.AuthoritySignDocuments.IsMainDefault = 0;
+                    }
+
                     _dataBaseContext.Commit();
                 }
                 catch(Exception ex)
