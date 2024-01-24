@@ -16,7 +16,7 @@ namespace AuthoritySignClient.DataBase.Implementations
             modelBuilder.Entity<RefCustomer>().HasKey(r => r.Id).ToTable("REF_CUSTOMERS", "ABT")
                 .Property(r => r.Id).HasColumnName(@"ID").IsRequired();
 
-            modelBuilder.Entity<RefAuthoritySignDocuments>().HasKey(r => r.IdCustomer).ToTable("REF_AUTHORITY_SIGN_DOCUMENTS", "EDI")
+            modelBuilder.Entity<RefAuthoritySignDocuments>().HasKey(r => new { r.IdCustomer, r.Inn }).ToTable("REF_AUTHORITY_SIGN_DOCUMENTS", "EDI")
                 .Property(r => r.IdCustomer).HasColumnName(@"ID_CUSTOMER").IsRequired();
         }
 
