@@ -41,7 +41,7 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>8393CD59F3B9F7F072BBB1912C9BF3033B1F25A4</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>8D270538129328BA72A54C4077F9DB0247F7D9B0</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>AuthoritySignClient_TemporaryKey.pfx</ManifestKeyFile>
